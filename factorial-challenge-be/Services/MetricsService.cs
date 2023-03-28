@@ -39,8 +39,12 @@ public class MetricsService : IMetricsService
     private static IEnumerable<Metric> AggregatePerDuration(IEnumerable<Metric> stats, TimeSpan window)
     {
         var enumerable = stats as Metric[] ?? stats.ToArray();
-        var windowMetrics = new List<Metric> {enumerable.First()};
+        if (enumerable.Length == 0)
+        {
+            return Enumerable.Empty<Metric>();
+        }
 
+        var windowMetrics = new List<Metric> {enumerable.First()};
         foreach (var stat in enumerable)
         {
             var target = windowMetrics.Last();

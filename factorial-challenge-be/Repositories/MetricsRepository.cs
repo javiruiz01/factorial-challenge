@@ -1,3 +1,6 @@
+using System.Data.SqlClient;
+using System.Text;
+using Dapper;
 using factorial_challenge.Models;
 
 namespace factorial_challenge.Repositories;
@@ -11,28 +14,14 @@ public class MetricsRepository : IMetricsRepository
         _databaseSettings = databaseSettings ?? throw new ArgumentNullException(nameof(databaseSettings));
     }
 
-    public Task<IEnumerable<Metric>> GetMetrics(string name)
+    public async Task<IEnumerable<Metric>> GetMetrics(string name)
     {
-        var random = new Random();
-        return Task.FromResult(Enumerable.Range(1, 2500)
-            .Select(idx => new Metric
-            {
-                Id = Guid.NewGuid(),
-                Name = name,
-                Timestamp = DateTime.UtcNow.Subtract(TimeSpan.FromMinutes(idx)),
-                Avg = random.Next(20, 23),
-                Count = random.Next(1, 6),
-                Min = random.Next(10),
-                Max = random.Next(10),
-            }).Concat(Enumerable.Range(1, 2500).Select(idx => new Metric
-            {
-                Id = Guid.NewGuid(),
-                Name = name,
-                Timestamp = DateTime.UtcNow.Subtract(TimeSpan.FromMinutes(idx + 30)),
-                Avg = random.Next(24, 27),
-                Count = random.Next(6),
-                Min = random.Next(10),
-                Max = random.Next(10, 20),
-            })));
+        var query = new StringBuilder()
+            .AppendLine("SELECT Id, Name, Timestamp, Avg, Count, Min, Max FROM [factorial].[factorial].[Metrics]")
+            .AppendLine("WHERE Name = @name")
+            .AppendLine("ORDER BY Timestamp DESC")
+            .ToString();
+        await using var connection = new SqlConnection(_databaseSettings.ConnectionString);
+        return await connection.QueryAsync<Metric>(query, new {name});
     }
 }
