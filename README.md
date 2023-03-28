@@ -13,3 +13,7 @@ For this purpose, I will be creating the following:
   - Recharts
 - A backend application with dotnet
 - An SQL Server database
+
+## Database
+
+The database has been filled with metrics for two different names: `name-1` and `name-2`. This way, we're able to filter by them in the frontend.
