@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace factorial_challenge.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("metrics")]
 public class MetricsController : ControllerBase
 {
     private readonly IMetricsService _metricsService;
@@ -15,7 +15,7 @@ public class MetricsController : ControllerBase
         _metricsService = metricsService ?? throw new ArgumentNullException(nameof(metricsService));
     }
 
-    [Route("/{name}/1m")]
+    [Route("{name}/1m")]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Metric>))]
     public async Task<IActionResult> GetMetricsPerMinute([FromRoute] string name)
@@ -24,7 +24,7 @@ public class MetricsController : ControllerBase
         return Ok(metrics);
     }
 
-    [Route("/{name}/1h")]
+    [Route("{name}/1h")]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Metric>))]
     public async Task<IActionResult> GetMetricsPerHour([FromRoute] string name)
@@ -33,7 +33,7 @@ public class MetricsController : ControllerBase
         return Ok(metrics);
     }
 
-    [Route("/{name}/1d")]
+    [Route("{name}/1d")]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Metric>))]
     public async Task<IActionResult> GetMetricsPerDay([FromRoute] string name)

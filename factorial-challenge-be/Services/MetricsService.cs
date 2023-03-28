@@ -14,7 +14,8 @@ public class MetricsService : IMetricsService
 
     public async Task<IEnumerable<Metric>> GetMetricsPerMinute(string name)
     {
-        return await _metricsRepository.GetMetrics(name);
+        var allMetrics = await _metricsRepository.GetMetrics(name);
+        return allMetrics.Take(60);
     }
 
     public async Task<IEnumerable<Metric>> GetMetricsPerHour(string name)
