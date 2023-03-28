@@ -14,7 +14,7 @@ export enum State {
   ERROR = 'error',
 }
 
-export type MaybeMetrics = MetricsResponse[] | null;
+export type MaybeMetrics = Metric[] | null;
 
 export const useMetrics = (
   target: string,
@@ -35,9 +35,18 @@ export const useMetrics = (
         throw new Error('Network response was not ok');
       }
 
-      const res: MetricsResponse[] = await response.json();
+      const rawMetrics: MetricsResponse[] = await response.json();
       setState(State.IDLE);
-      setMetrics(res);
+      setMetrics(
+        rawMetrics.map(({ timestamp, ...rest }) => {
+          const date = new Date(timestamp);
+          return {
+            timestamp,
+            date: `${date.getHours()}:${date.getMinutes()}`,
+            ...rest,
+          };
+        })
+      );
     }
 
     let ignore = false;
