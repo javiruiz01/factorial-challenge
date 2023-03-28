@@ -1,3 +1,4 @@
+import { Dashboard } from './components/Dashboard';
 import { Header } from './components/Header';
 import './index.css';
 
@@ -5,7 +6,9 @@ function App() {
   return (
     <>
       <Header />
-      <main className="mt-12">Dashboard</main>
+      <main className="mt-12">
+        <Dashboard />
+      </main>
     </>
   );
 }
