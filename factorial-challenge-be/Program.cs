@@ -1,10 +1,12 @@
 using factorial_challenge.Models;
 using factorial_challenge.Repositories;
+using factorial_challenge.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 const string allowedOrigins = "AllowedOrigins";
 // Add services to the container.
+builder.Services.AddScoped<IMetricsService, MetricsService>();
 builder.Services.AddScoped<IMetricsRepository, MetricsRepository>();
 
 builder.Services.AddCors(options => options
