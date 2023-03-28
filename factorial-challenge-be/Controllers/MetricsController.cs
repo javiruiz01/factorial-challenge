@@ -27,17 +27,19 @@ public class MetricsController : ControllerBase
     [Route("/{name}/1h")]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Metric>))]
-    public async Task<IEnumerable<Metric>> GetMetricsPerHour([FromRoute] string name)
+    public async Task<IActionResult> GetMetricsPerHour([FromRoute] string name)
     {
-        return await _metricsService.GetMetricsPerHour(name);
+        var metrics = await _metricsService.GetMetricsPerHour(name);
+        return Ok(metrics);
     }
 
     [Route("/{name}/1d")]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Metric>))]
-    public async Task<IEnumerable<Metric>> GetMetricsPerDay([FromRoute] string name)
+    public async Task<IActionResult> GetMetricsPerDay([FromRoute] string name)
     {
-        return await _metricsService.GetMetricsPerDay(name);
+        var metrics = await _metricsService.GetMetricsPerDay(name);
+        return Ok(metrics);
     }
 
     [Route("")]
