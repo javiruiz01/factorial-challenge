@@ -1,0 +1,19 @@
+version: '3.2'
+services:
+  api:
+    container_name: api
+    build:
+      context: factorial-challenge-be
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - sql-server
+    ports:
+      - '8080:80'
+    restart: always
+
+  sql-server:
+    container_name: sql-server
+    build:
+      context: db
+    restart: always
