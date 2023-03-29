@@ -55,7 +55,7 @@ export const useMetrics = (
     return () => {
       ignore = true;
     };
-  }, []);
+  }, [target]);
 
   return [state, metrics];
 };

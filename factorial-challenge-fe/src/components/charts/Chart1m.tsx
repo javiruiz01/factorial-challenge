@@ -13,11 +13,11 @@ import {
 import { State, TimeSpan, useMetrics } from '../../hooks/useMetrics';
 import { CustomTooltip } from './Tooltip';
 
-export const Chart1m: FC = () => {
-  const [state, metrics] = useMetrics('name-1', TimeSpan.MINUTE);
+export const Chart1m: FC<{ name: string }> = ({ name }) => {
+  const [state, metrics] = useMetrics(name, TimeSpan.MINUTE);
 
   if (state === State.LOADING) {
-    return <div>Loading...</div>;
+    return <div className="w-full h-[300px]">Loading...</div>;
   }
 
   if (state === State.ERROR) {

@@ -10,14 +10,13 @@ import {
   YAxis,
 } from 'recharts';
 import { State, TimeSpan, useMetrics } from '../../hooks/useMetrics';
-import { Metric } from '../../models/metric';
 import { CustomTooltip } from './Tooltip';
 
-export const Chart1h: FC = () => {
-  const [state, metrics] = useMetrics('name-1', TimeSpan.HOUR);
+export const Chart1h: FC<{ name: string }> = ({ name }) => {
+  const [state, metrics] = useMetrics(name, TimeSpan.HOUR);
 
   if (state === State.LOADING) {
-    return <div>Loading...</div>;
+    return <div className="w-full h-[300px]">Loading...</div>;
   }
 
   if (state === State.ERROR) {

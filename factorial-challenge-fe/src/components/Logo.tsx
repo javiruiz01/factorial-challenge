@@ -6,7 +6,7 @@ export const Logo: FC = () => {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 268 56"
       fill="currentColor"
-      className="text-factorial-red h-8 min-h-min"
+      className="text-factorial-red h-8"
     >
       <title>Factorial</title>
       <path d="M45.63 49.754A27.883 27.883 0 0128 56a27.883 27.883 0 01-17.63-6.246A27.883 27.883 0 0128 43.508c6.682 0 12.817 2.34 17.63 6.246z"></path>

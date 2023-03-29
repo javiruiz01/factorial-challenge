@@ -12,8 +12,12 @@ For this purpose, I will be creating the following:
   - Tailwind
   - Recharts
 - A backend application with dotnet
-- An SQL Server database
+- An SQL Server database: It has been filled with metrics for two different names: `name-1` and `name-2`. This way, we're able to filter by them in the frontend.
 
-## Database
+## Initial Idea
 
-The database has been filled with metrics for two different names: `name-1` and `name-2`. This way, we're able to filter by them in the frontend.
+## TODOs
+
+[ ] Names in the frontend are hardcoded into the frontend, we should be getting them by an API call.
+[ ] Right now the logic for handling states while fetching is duplicated among the charts components, we should seek to unify that.
+[ ] The name for the metric is right now being handled in the select, it would be nice to have it synced with the url as a path parameter.
