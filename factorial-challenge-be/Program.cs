@@ -18,10 +18,9 @@ builder.Services.AddCors(options => options
     .AddPolicy(
         allowedOrigins,
         policyBuilder => policyBuilder
-            .WithOrigins(builder.Configuration[allowedOrigins] ?? string.Empty)
+            .AllowAnyOrigin()
             .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials()));
+            .AllowAnyMethod()));
 
 builder.Services
     .Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
