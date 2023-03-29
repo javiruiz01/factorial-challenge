@@ -36,17 +36,20 @@ export const useMetrics = (
       }
 
       const rawMetrics: MetricsResponse[] = await response.json();
-      setState(State.IDLE);
-      setMetrics(
-        rawMetrics.map(({ timestamp, ...rest }) => {
-          const date = new Date(timestamp);
-          return {
-            timestamp,
-            date: `${date.getHours()}:${date.getMinutes()}`,
-            ...rest,
-          };
-        })
-      );
+
+      if (!ignore) {
+        setState(State.IDLE);
+        setMetrics(
+          rawMetrics.map(({ timestamp, ...rest }) => {
+            const date = new Date(timestamp);
+            return {
+              timestamp,
+              date: `${date.getHours()}:${date.getMinutes()}`,
+              ...rest,
+            };
+          })
+        );
+      }
     }
 
     let ignore = false;
