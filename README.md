@@ -14,7 +14,11 @@ For this purpose, I will be creating the following:
 - A backend application with dotnet
 - An SQL Server database: It has been filled with metrics for two different names: `name-1` and `name-2`. This way, we're able to filter by them in the frontend.
 
-## Initial Idea
+## Initial idea
+
+The initial idea was to have two tables: `Metrics` and `Measurements`. With these tables, we could be posting however many metrics we wanted to the `Measurements` table, we would have a job that would go processing and consolidating the measurements by minute into the `Metrics` table. Computing based on minutes is not computationally intensive (at most 10080 minutes in a week), so we would only have to worry about generating the proper values per minute.
+
+This way of doing was quickly dismissed, since we didn't have that much time. Instead, I went with a single table in charge of everything.
 
 ## TODOs
 
@@ -26,3 +30,4 @@ For this purpose, I will be creating the following:
 [ ] Add validation to the creation form.
 [ ] Handle errors in form when creating metrics.
 [ ] Show confirmation that the metric has been created.
+[ ] Allow users to see metrics by date.

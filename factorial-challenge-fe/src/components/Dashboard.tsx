@@ -49,7 +49,7 @@ export const Dashboard: FC = () => {
           <Chart1m name={name} />
         </div>
 
-        <div className="flex flex-col md:flex-row mt-6">
+        <div className="flex flex-col lg:flex-row mt-6">
           <div className="w-full">
             <h3 className="text-gray-900 text-xl font-semibold mb-2">
               1 day <span className="text-factorial-red">@</span> 1 hour

@@ -22,7 +22,7 @@ public class MetricsService : IMetricsService
     {
         var metricsPerMinute = await _metricsRepository.GetMetrics(name);
 
-        return AggregatePerDuration(metricsPerMinute, TimeSpan.FromHours(1));
+        return AggregatePerDuration(metricsPerMinute.Take(1440), TimeSpan.FromHours(1));
     }
 
     public async Task<IEnumerable<Metric>> GetMetricsPerDay(string name)
