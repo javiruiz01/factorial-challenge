@@ -8,5 +8,5 @@ public interface IMetricsService
     Task<IEnumerable<Metric>> GetMetricsPerHour(string name);
     Task<IEnumerable<Metric>> GetMetricsPerDay(string name);
 
-    Task AddMetric();
+    Task AddMetric(Measure measure);
 }

@@ -5,4 +5,6 @@ namespace factorial_challenge.Repositories;
 public interface IMetricsRepository
 {
     Task<IEnumerable<Metric>> GetMetrics(string name);
+
+    Task AddMetric(Measure measure);
 }

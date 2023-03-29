@@ -32,9 +32,9 @@ public class MetricsService : IMetricsService
         return AggregatePerDuration(metricsPerMinute, TimeSpan.FromDays(1));
     }
 
-    public Task AddMetric()
+    public async Task AddMetric(Measure measure)
     {
-        throw new NotImplementedException();
+        await _metricsRepository.AddMetric(measure);
     }
 
     private static IEnumerable<Metric> AggregatePerDuration(IEnumerable<Metric> stats, TimeSpan window)

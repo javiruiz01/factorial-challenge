@@ -45,7 +45,10 @@ public class MetricsController : ControllerBase
     [Route("")]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task NewMetric([FromBody] Measure newMetric)
+    public async Task<IActionResult> NewMetric([FromBody] Measure newMetric)
     {
+        await _metricsService.AddMetric(newMetric);
+
+        return Created($"/metrics/{newMetric.Name}/1m", new { });
     }
 }
