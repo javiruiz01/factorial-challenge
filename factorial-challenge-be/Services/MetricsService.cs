@@ -5,6 +5,12 @@ namespace factorial_challenge.Services;
 
 public class MetricsService : IMetricsService
 {
+    // Since we're not filtering by date because we're using mocked data,
+    // we fetch all available data points (2 weeks), and then we take
+    // the number of minutes we need to be shown in the graph
+    private const int MinutesInAnHour = 60;
+    private const int MinutesInADay = 1440;
+
     private readonly IMetricsRepository _metricsRepository;
 
     public MetricsService(IMetricsRepository metricsRepository)
@@ -15,14 +21,14 @@ public class MetricsService : IMetricsService
     public async Task<IEnumerable<Metric>> GetMetricsPerMinute(string name)
     {
         var allMetrics = await _metricsRepository.GetMetrics(name);
-        return allMetrics.Take(60);
+        return allMetrics.Take(MinutesInAnHour);
     }
 
     public async Task<IEnumerable<Metric>> GetMetricsPerHour(string name)
     {
         var metricsPerMinute = await _metricsRepository.GetMetrics(name);
 
-        return AggregatePerDuration(metricsPerMinute.Take(1440), TimeSpan.FromHours(1));
+        return AggregatePerDuration(metricsPerMinute.Take(MinutesInADay), TimeSpan.FromHours(1));
     }
 
     public async Task<IEnumerable<Metric>> GetMetricsPerDay(string name)

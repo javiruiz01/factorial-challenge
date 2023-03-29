@@ -43,22 +43,38 @@ npm run dev
 
 ## TODOs
 
-[ ] Metric names in the frontend are hardcoded into the frontend, we should be getting them by an API call.
+[x] Save metrics in database
 
-[ ] Right now the logic for handling states while fetching is duplicated among the charts components, we should seek to unify that.
+[x] Expose metrics to frontend through an API by minute
 
-[ ] The name for the metric is right now being handled in the select, it would be nice to have it synced with the url as a path parameter.
+[x] Expose metrics to frontend through an API by hour
 
-[ ] When posting new metrics, we should handle it as an `UPDATE` or `INSERT`, rather than inserting directly.
+[x] Expose metrics to frontend through an API by day
+
+[x] Allow users to filter by metric name
+
+[x] Allow users to post new metrics through frontend
+
+[x] Allow users to see all information regarding a metric in the graph
+
+[x] Run backend + sql together with docker compose
+
+[ ] Get metric names through an API call.
+
+[ ] Simplify logic for handling API states when calling to get metrics
+
+[ ] Sync selected metric name with a parameter in the url
+
+[ ] Handle new metrics by updating previous value if exists, insert otherwise
 
 [ ] Min-max values on the first graph look weird, but this is due to the mock we're using, the idea is that they could be shown with the average in between.
 
-[ ] Add validation to the creation form.
+[ ] Add validation to the creation form
 
-[ ] Handle errors in form when creating metrics.
+[ ] Handle errors in form when creating metrics
 
-[ ] Show confirmation that the metric has been created.
+[ ] Show confirmation that the metric has been created
 
-[ ] Allow users to see metrics by date.
+[ ] Allow users to see metrics by date
 
-[ ] DB password should passed as an environment variable.
+[ ] DB password should passed as an environment variable
