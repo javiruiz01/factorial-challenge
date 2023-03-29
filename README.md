@@ -23,3 +23,6 @@ For this purpose, I will be creating the following:
 [ ] The name for the metric is right now being handled in the select, it would be nice to have it synced with the url as a path parameter.
 [ ] When posting new metrics, we should handle it as an `UPDATE` or `INSERT`, rather than inserting directly.
 [ ] Min-max values on the first graph look weird, but this is due to the mock we're using, the idea is that they could be shown with the average in between.
+[ ] Add validation to the creation form.
+[ ] Handle errors in form when creating metrics.
+[ ] Show confirmation that the metric has been created.
